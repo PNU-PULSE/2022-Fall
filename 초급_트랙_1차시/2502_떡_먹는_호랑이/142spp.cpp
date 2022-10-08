@@ -9,10 +9,8 @@ pair<int,int> fibo(int x){
     if(x==1){ p.first++; }
     else if (x==2){ p.second++; }
     else if(!table[x].first && !table[x].second){
-        p.first += fibo(x-1).first;
-        p.second += fibo(x-1).second;
-        p.first += fibo(x-2).first;
-        p.second += fibo(x-2).second;
+        p.first += fibo(x-1).first + fibo(x-2).first;
+        p.second += fibo(x-1).second + fibo(x-2).second;
     }
     table[x] = p;
     return table[x];

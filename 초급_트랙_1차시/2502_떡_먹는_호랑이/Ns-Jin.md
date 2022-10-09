@@ -14,15 +14,15 @@ fibo(d-2) * x + fibo(d-1) * y = k
 따라서 x = 1 부터 k보다 작을 때 까지 위 식을 만족하는 y를 찾으면 된다.
 ``` c++
 int fibo_x = fibo(d-2);
-    int fibo_y = fibo(d-1);
-    
-    int a,b;
-    for(int i=1;i<k;i++) {
-        if((k - i*fibo_x)%fibo_y == 0) {
-            a = i;
-            b = (k-i*fibo_x)/fibo_y;
-            break;
-        }
+int fibo_y = fibo(d-1);
+
+int a,b;
+for(int i=1;i<k;i++) {
+    if((k - i*fibo_x)%fibo_y == 0) {
+        a = i;
+        b = (k-i*fibo_x)/fibo_y;
+        break;
     }
+}
 ```
 문제 조건에서 답이 여러개인 경우 하나만 출력해도 된다 하였으므로 처음 찾았을 때, 바로 for문을 벗어나는 것으로 처리하였다.

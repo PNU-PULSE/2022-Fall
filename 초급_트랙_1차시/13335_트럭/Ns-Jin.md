@@ -7,13 +7,13 @@
 트럭의 수, 다리 길이, 최대하중을 입력받고 트럭의 수 만큼의 트럭무게들을 queue에 push해주었습니다.
 ``` C++
 int n,w,l;
-    cin >> n >> w >> l;
-    queue<int> truck;
-    for(int i=0;i<n;i++) {
-        int temp;
-        cin >> temp;
-        truck.push(temp);
-    }
+cin >> n >> w >> l;
+queue<int> truck;
+for(int i=0;i<n;i++) {
+    int temp;
+    cin >> temp;
+    truck.push(temp);
+}
 ```
 
 bridge라는 queue를 하나의 다리라고 생각하고 다리위에 올라온 트럭을 push해준다.
@@ -24,25 +24,25 @@ on_bridge_weight라는 변수로 다리위의 트럭들의 총 무게를 갱신�
 bridge에 0을 push해준다.(트럭사이 간격에 무게가 0인 트럭을 이어서 보내준다고 생각했다.)
 ``` c++
 queue<int> bridge;
-    int on_bridge_weight = 0;
-    int all_time = 0;
-    while(!truck.empty()) {
-        if(bridge.size() == w) {
-            on_bridge_weight -= bridge.front();
-            bridge.pop();
-        }
-        int front_truck = truck.front();
-        if(on_bridge_weight + front_truck <= l) {
-            bridge.push(front_truck);
-            on_bridge_weight += front_truck;
-            truck.pop();
-            all_time++;
-        }
-        else {
-            bridge.push(0);
-            all_time++;
-        }   
+int on_bridge_weight = 0;
+int all_time = 0;
+while(!truck.empty()) {
+    if(bridge.size() == w) {
+        on_bridge_weight -= bridge.front();
+        bridge.pop();
     }
+    int front_truck = truck.front();
+    if(on_bridge_weight + front_truck <= l) {
+        bridge.push(front_truck);
+        on_bridge_weight += front_truck;
+        truck.pop();
+        all_time++;
+    }
+    else {
+        bridge.push(0);
+        all_time++;
+    }   
+}
 ```
 위의 반복문은 마지막트럭이 다리위에 처음 올라왔을 때 끝나기 때문에
 all_time(총 걸린시간)에 다리의 길이만큼을 더해준다.
